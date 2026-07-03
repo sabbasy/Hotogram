@@ -255,7 +255,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
           </div>
 
           {/* Stacking Cards Container */}
-          <div className="relative mx-auto w-full max-w-5xl px-4 md:px-6 h-[640px] xs:h-[660px] md:h-[420px] flex-grow max-h-[640px] xs:max-h-[660px] md:max-h-[420px]">
+          <div className="relative mx-auto w-full max-w-5xl px-4 md:px-6 h-[720px] xs:h-[750px] md:h-[420px] flex-grow max-h-[720px] xs:max-h-[750px] md:max-h-[420px]">
             
             {/* Card 1 */}
             <motion.div 
