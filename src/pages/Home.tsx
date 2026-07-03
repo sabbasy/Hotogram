@@ -284,8 +284,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-4 pb-8 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="shrink-0 my-auto w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/scan_qr_mockup.png" 
                     alt="Diner scanning table QR code mockup" 
@@ -323,8 +323,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-4 pb-8 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="shrink-0 my-auto w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/digital_menu_mockup.png" 
                     alt="Digital menu ordering and checkout mockup" 
@@ -362,8 +362,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-4 pb-8 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="shrink-0 my-auto w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/kitchen_kds_mockup.png" 
                     alt="Kitchen display system active orders mockup" 
@@ -399,8 +399,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-4 pb-8 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="shrink-0 my-auto w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/payment_receipt_mockup.png" 
                     alt="Digital payment success and checkout mockup" 
