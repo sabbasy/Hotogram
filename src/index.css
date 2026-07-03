@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-primary: #085041;          /* Deep teal */
+  --color-primary-mid: #0F6E56;      /* Teal */
+  --color-accent: #D85A30;           /* Coral */
+  --color-bg: #F1EFE8;               /* Warm off-white */
+  --color-surface: #FFFFFF;          /* Card backgrounds */
+  --color-text-secondary: #5F5E5A;   /* Text secondary */
+  
+  --font-heading: 'Manrope', 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  
+  --shadow-neon: 0 4px 20px rgba(8, 80, 65, 0.05);
+  --shadow-neon-accent: 0 4px 20px rgba(216, 90, 48, 0.08);
+}
+
+.dark {
+  --color-primary: #F1EFE8;          /* Light off-white headings */
+  --color-primary-mid: #10B981;      /* Glowing emerald */
+  --color-accent: #E26A40;           /* Vibrant coral */
+  --color-bg: #031411;               /* Dark cyber teal */
+  --color-surface: #06211B;          /* Dark teal card backgrounds */
+  --color-text-secondary: #8AA496;   /* Muted teal-gray secondary */
+  
+  --shadow-neon: 0 0 25px rgba(16, 185, 129, 0.2);
+  --shadow-neon-accent: 0 0 25px rgba(226, 106, 64, 0.3);
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-mid: var(--color-primary-mid);
+  --color-accent: var(--color-accent);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text-secondary: var(--color-text-secondary);
+  
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sans);
+  
+  --shadow-neon: var(--shadow-neon);
+  --shadow-neon-accent: var(--shadow-neon-accent);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Premium Typography classes */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Custom transitions and scroll margins for header anchors */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Premium Tech Grid Background */
+.bg-tech-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(8, 80, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(8, 80, 65, 0.04) 1px, transparent 1px);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
