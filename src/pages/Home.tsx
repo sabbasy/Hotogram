@@ -233,7 +233,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
         <div className="sticky top-0 h-screen py-16 flex flex-col justify-center overflow-hidden bg-tech-grid/20">
           
           {/* Header */}
-          <div className="mx-auto w-full max-w-5xl px-6 mb-8 flex-shrink-0">
+          <div className="mx-auto w-full max-w-5xl px-4 md:px-6 mb-8 flex-shrink-0">
             <span className="text-xs font-bold uppercase tracking-wider text-accent">Process Flow</span>
             <h2 className="font-heading text-3.5xl md:text-5xl font-bold tracking-tight text-primary mt-2">
               The 4-Step Table Ordering Journey
@@ -255,7 +255,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
           </div>
 
           {/* Stacking Cards Container */}
-          <div className="relative mx-auto w-full max-w-5xl px-6 h-[560px] xs:h-[580px] md:h-[420px] flex-grow max-h-[560px] xs:max-h-[580px] md:max-h-[420px]">
+          <div className="relative mx-auto w-full max-w-5xl px-4 md:px-6 h-[640px] xs:h-[660px] md:h-[420px] flex-grow max-h-[640px] xs:max-h-[660px] md:max-h-[420px]">
             
             {/* Card 1 */}
             <motion.div 
@@ -264,7 +264,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 opacity: springCard1Opacity,
                 zIndex: 10
               }}
-              className="absolute inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
+              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
             >
               <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
                 <div>
@@ -284,8 +284,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-3 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="w-full max-w-[180px] xs:max-w-[220px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 p-2 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/scan_qr_mockup.png" 
                     alt="Diner scanning table QR code mockup" 
@@ -303,7 +303,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 opacity: springCard2Opacity,
                 zIndex: 20
               }}
-              className="absolute inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
+              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
             >
               <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
                 <div>
@@ -323,8 +323,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-3 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="w-full max-w-[180px] xs:max-w-[220px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 p-2 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/digital_menu_mockup.png" 
                     alt="Digital menu ordering and checkout mockup" 
@@ -342,7 +342,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 opacity: springCard3Opacity,
                 zIndex: 30
               }}
-              className="absolute inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
+              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
             >
               <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
                 <div>
@@ -362,8 +362,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-3 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="w-full max-w-[180px] xs:max-w-[220px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 p-2 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/kitchen_kds_mockup.png" 
                     alt="Kitchen display system active orders mockup" 
@@ -379,7 +379,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 x: springCard4X,
                 zIndex: 40
               }}
-              className="absolute inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
+              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
             >
               <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
                 <div>
@@ -399,8 +399,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2 p-3 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="w-full max-w-[180px] xs:max-w-[220px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
+              <div className="w-full md:w-1/2 p-2 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
+                <div className="w-full max-w-[320px] xs:max-w-[360px] md:max-w-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
                   <img 
                     src="/images/payment_receipt_mockup.png" 
                     alt="Digital payment success and checkout mockup" 
