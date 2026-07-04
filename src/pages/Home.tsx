@@ -182,11 +182,11 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
           </div>
           
           <h1 className="font-heading text-4.5xl sm:text-6xl font-bold tracking-tight text-primary leading-tight max-w-4xl mx-auto">
-            Skip the Wait. <span className="text-primary-mid">Scan, Order, Eat.</span>
+            Own Your Restaurant. <span className="text-primary-mid">The AI-Ready OS.</span>
           </h1>
           
           <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            Zero-commission QR table ordering for Indian restaurants and cafes. No customer app download. Orders sent straight to your kitchen.
+            Start with seamless QR code table ordering, and expand to direct online orders, branded websites, customer CRM, and kitchen analytics—all from one unified platform without paying third-party marketplace commissions.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -216,13 +216,13 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-heading text-3xl font-bold tracking-tight text-primary">
-              Aggregator commissions are draining your profits.
+              Own your restaurant. Own your customers. Grow without commissions.
             </h2>
             <p className="mt-6 text-lg text-text-secondary leading-relaxed">
-              Indian restaurants pay up to 25% on delivery platforms for customers who are already sitting inside their establishments. Adding to that, forcing customers to download an app just to place a dine-in order creates friction that ruins their dining experience.
+              Hotogram is not a food delivery marketplace. We provide the software infrastructure that enables independent restaurants, cafés, and cloud kitchens to digitize their operations. Take complete control over your customer data, your brand, and your revenue.
             </p>
             <div className="mt-8 text-primary-mid font-semibold">
-              Hotogram keeps your dine-in ordering commission-free, fast, and completely yours.
+              The digital operating system built for modern hospitality businesses.
             </div>
           </div>
         </ScrollReveal>

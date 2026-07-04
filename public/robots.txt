@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# Allow AI crawlers to read the LLMs metadata explicitly
+User-agent: ChatGPT-User
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /llms.txt
+
+User-agent: Claude-Web
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+
 Sitemap: https://hotogram.com/sitemap.xml

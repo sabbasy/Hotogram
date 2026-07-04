@@ -14,7 +14,7 @@ export default function About({ onNavigate }: AboutProps) {
               Our Story
             </h1>
             <p className="text-text-secondary text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-              We build technology to return ownership, profits, and data back to independent merchants.
+              We build the software infrastructure that empowers hospitality businesses to digitize and scale independently.
             </p>
           </div>
         </ScrollReveal>
@@ -28,13 +28,13 @@ export default function About({ onNavigate }: AboutProps) {
               </h2>
               <div className="space-y-6 text-text-secondary text-base leading-relaxed">
                 <p>
-                  Running local businesses in Kashmir, we watched hardworking restaurant owners fight a losing battle against food delivery aggregator giants. Up to 25% commissions on delivery orders were painful enough. But when aggregators began capturing dine-in tables, forcing apps on walk-in guests, it crossed a line.
+                  Running local businesses in Kashmir, we noticed a major problem: restaurants were forced to rely on fragmented third-party marketplaces to digitize their operations. They surrendered their brand, their customer data, and up to 25% of their revenue just to participate in the digital economy.
                 </p>
                 <p>
-                  Local food businesses shouldn't have to choose between going digital and staying profitable. Technology should empower merchants, not tax them.
+                  We believe that technology should be a utility that restaurants own, not a tax they pay. Just as Shopify empowered independent retail, hospitality businesses need their own digital infrastructure to thrive.
                 </p>
                 <p>
-                  We built <strong>Hotogram</strong> as a simple, powerful, flat-rate alternative. By scanning a QR code on a table, customers browse and order directly inside their browser—no downloads required. The ticket routes straight to your kitchen, and 100% of the sale goes directly to your bank account.
+                  We built <strong>Hotogram</strong> as a comprehensive Restaurant Operating System. Starting with frictionless QR code ordering for dine-in guests, our platform unifies digital menus, direct online ordering, websites, and customer CRM into one single system. You own the software, you own the customer, and you own the revenue.
                 </p>
               </div>
             </div>
@@ -44,21 +44,21 @@ export default function About({ onNavigate }: AboutProps) {
           <ScrollReveal delay={200}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="rounded-2xl border border-primary/5 bg-surface/30 p-6">
-                <h3 className="font-heading text-lg font-bold text-primary mb-3">Zero Commission</h3>
+                <h3 className="font-heading text-lg font-bold text-primary mb-3">Unified Infrastructure</h3>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  Aggregators tax your hard work. Hotogram runs on a predictable flat monthly subscription. Keep every single rupee.
+                  Replace fragmented tools. Manage QR ordering, online deliveries, menus, and your website from one central dashboard.
                 </p>
               </div>
               <div className="rounded-2xl border border-primary/5 bg-surface/30 p-6">
-                <h3 className="font-heading text-lg font-bold text-primary mb-3">Zero App Downloads</h3>
+                <h3 className="font-heading text-lg font-bold text-primary mb-3">Frictionless Experience</h3>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  Customers scan and order in seconds directly inside the browser. Zero sign-up friction, zero app store barriers.
+                  The guest journey starts with a simple QR scan. No app downloads, no sign-up walls. Fast, seamless ordering in seconds.
                 </p>
               </div>
               <div className="rounded-2xl border border-primary/5 bg-surface/30 p-6">
-                <h3 className="font-heading text-lg font-bold text-primary mb-3">Own Your Data</h3>
+                <h3 className="font-heading text-lg font-bold text-primary mb-3">Own Your Customers</h3>
                 <p className="text-sm text-text-secondary leading-relaxed">
-                  Get direct access to guest contact names, emails, and phone logs. Build lasting relationships without intermediary walls.
+                  Capture guest data directly into your own CRM. Run loyalty programs and remarketing campaigns without intermediary restrictions.
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function About({ onNavigate }: AboutProps) {
                   </h3>
                   <div className="space-y-4 text-sm text-teal-100/90 dark:text-text-secondary leading-relaxed">
                     <p>
-                      "When you run a restaurant in Kashmir or anywhere in India, every single margin point counts. Aggregators charges of up to 25% eat the difference between running a healthy business and going under. Dine-in ordering doesn't need a platform intermediary. Our promise is simple: flat subscription pricing, direct payouts, and zero commission cuts."
+                      "Our vision is to give hospitality businesses complete ownership of their digital presence through a unified Restaurant Operating System. By replacing fragmented marketplace tools with a single, scalable platform, we're building the technology infrastructure that helps independent restaurants scale on their own terms."
                     </p>
                     <button 
                       onClick={() => onNavigate("contact")}

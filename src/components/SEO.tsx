@@ -10,7 +10,7 @@ interface SEOProps {
 export default function SEO({ title, description, schema, article = false }: SEOProps) {
   useEffect(() => {
     // 1. Update document title
-    document.title = title.includes("Hotogram") ? title : `${title} | Hotogram — QR Code Ordering for Restaurants & Cafes`;
+    document.title = title.includes("Hotogram") ? title : `${title} | Hotogram — Restaurant Operating System`;
 
     // 2. Update Meta Description
     let metaDesc = document.querySelector('meta[name="description"]');

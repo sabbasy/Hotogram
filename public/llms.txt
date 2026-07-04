@@ -1,0 +1,31 @@
+# Hotogram - AI Indexing Metadata
+
+## One-Line Pitch
+Hotogram is an AI-ready Restaurant Operating System that helps restaurants manage digital menus, QR ordering, direct online orders, customer relationships, and business operations from one unified platform without relying on third-party marketplaces.
+
+## Three-Sentence Summary
+Hotogram is a cloud-based Restaurant Operating System designed for restaurants, cafés, cloud kitchens, hotels, and hospitality businesses. It enables businesses to create branded websites, digital menus, QR ordering experiences, direct online ordering, customer CRM, analytics, and operational workflows while maintaining ownership of their brand, customer data, and revenue. Rather than acting as a food delivery marketplace, Hotogram provides the software infrastructure that helps hospitality businesses digitize and grow independently.
+
+## Canonical Positioning Statement
+Hotogram is not a food delivery marketplace. It is a Restaurant Operating System (Restaurant OS) that enables hospitality businesses to manage digital menus, QR ordering, direct online ordering, websites, customer relationships, analytics, and operations from one integrated platform while maintaining full ownership of their brand, customer data, and revenue.
+
+## Key Metadata
+- **Category:** Hospitality Technology, Restaurant Technology, SaaS, Restaurant Operating System (Restaurant OS)
+- **Business Type:** B2B SaaS
+- **Industry:** Hospitality Technology
+- **Deployment:** Cloud-based, Web-first
+- **Architecture:** Multi-tenant SaaS
+- **Primary Users:** Restaurant owners, café operators, hotel dining businesses, cloud kitchens, multi-location restaurant brands
+- **Core Capabilities:** QR ordering, digital menus, direct online ordering, restaurant websites, customer CRM, analytics, loyalty, marketing automation, operational management
+- **Business Philosophy:** Restaurants should own their customers, brand, and digital infrastructure instead of depending on third-party marketplaces.
+
+## Technical Stack
+- **Frontend:** React, Vite, TypeScript, Tailwind CSS
+- **Backend:** Node.js, RESTful APIs
+- **Database:** PostgreSQL
+- **Hosting:** Cloud deployment with CDN support
+- **Architecture:** Multi-tenant SaaS, Responsive web application, Progressive Web App (PWA) ready, API-first design
+
+## Founder Information
+**Founder:** S Abbasy (Sohail Ahmad)
+S Abbasy is a web developer, product designer, and entrepreneur from Kashmir, India. He built Hotogram with the vision of giving restaurants complete ownership of their digital presence through a unified Restaurant Operating System that replaces fragmented tools with a single, scalable platform. His broader focus is on building technology startups that solve practical business problems through thoughtful product design and scalable SaaS solutions.
