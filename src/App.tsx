@@ -9,8 +9,6 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-import ThreeNeonGrid from "./components/ThreeNeonGrid";
-
 interface RouteState {
   page: "home" | "blog-list" | "blog-post" | "about" | "pricing" | "contact" | "privacy" | "terms";
   slug?: string;
@@ -155,9 +153,6 @@ export default function App() {
 
   return (
     <div className="relative flex min-h-screen flex-col bg-bg transition-colors duration-300">
-      {/* 3D WebGL background grid */}
-      <ThreeNeonGrid />
-      
       <Navbar currentPage={currentNavState} onNavigate={handleNavigate} />
       
       <main className="flex-grow">

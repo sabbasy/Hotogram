@@ -4,9 +4,7 @@ import SEO from "../components/SEO";
 import FAQAccordion from "../components/FAQAccordion";
 import type { FAQItem } from "../components/FAQAccordion";
 import InteractiveSimulator from "../components/InteractiveSimulator";
-import TiltCard from "../components/TiltCard";
 import ScrollReveal from "../components/ScrollReveal";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { submitToGoogleSheets } from "../utils/forms";
 
 export default function Home({ onNavigate }: { onNavigate: (page: string, hash?: string) => void }) {
@@ -20,42 +18,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
   
   const calendlyRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-linked Horizontal Slider logic for How it works
-  const horizontalScrollRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: scrollHorizontalProgress } = useScroll({
-    target: horizontalScrollRef,
-    offset: ["start start", "end end"]
-  });
-  
-  // Transform scroll progress into individual card positions (stacking card deck)
-  const card1Scale = useTransform(scrollHorizontalProgress, [0.15, 0.3], [1, 0.95]);
-  const card1Opacity = useTransform(scrollHorizontalProgress, [0.15, 0.3], [1, 0.3]);
-
-  const card2X = useTransform(scrollHorizontalProgress, [0.1, 0.35], ["100vw", "0vw"]);
-  const card2Scale = useTransform(scrollHorizontalProgress, [0.45, 0.6], [1, 0.95]);
-  const card2Opacity = useTransform(scrollHorizontalProgress, [0.45, 0.6], [1, 0.3]);
-
-  const card3X = useTransform(scrollHorizontalProgress, [0.4, 0.65], ["100vw", "0vw"]);
-  const card3Scale = useTransform(scrollHorizontalProgress, [0.75, 0.9], [1, 0.95]);
-  const card3Opacity = useTransform(scrollHorizontalProgress, [0.75, 0.9], [1, 0.3]);
-
-  const card4X = useTransform(scrollHorizontalProgress, [0.7, 0.95], ["100vw", "0vw"]);
-
-  const springCard1Scale = useSpring(card1Scale, { stiffness: 90, damping: 25 });
-  const springCard1Opacity = useSpring(card1Opacity, { stiffness: 90, damping: 25 });
-
-  const springCard2X = useSpring(card2X, { stiffness: 90, damping: 25 });
-  const springCard2Scale = useSpring(card2Scale, { stiffness: 90, damping: 25 });
-  const springCard2Opacity = useSpring(card2Opacity, { stiffness: 90, damping: 25 });
-
-  const springCard3X = useSpring(card3X, { stiffness: 90, damping: 25 });
-  const springCard3Scale = useSpring(card3Scale, { stiffness: 90, damping: 25 });
-  const springCard3Opacity = useSpring(card3Opacity, { stiffness: 90, damping: 25 });
-
-  const springCard4X = useSpring(card4X, { stiffness: 90, damping: 25 });
-
-  // 3D Perspective Scroll tilt logic for Why Hotogram
-  const whySectionRef = useRef<HTMLDivElement>(null);
+  // Removed unused scroll logic for old How It works section
 
   // Initialize waitlist counter from localStorage if available
   useEffect(() => {
@@ -173,385 +136,402 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
         schema={faqSchema}
       />
 
-      {/* Hero Section */}
-      <section className="relative px-6 pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-tech-grid">
-        <div className="mx-auto max-w-5xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary-mid/20 bg-primary/5 px-4 py-1.5 text-sm font-semibold text-primary-mid mb-8 animate-fade-in">
-            <span className="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
-            Launching {CONFIG.expectedLaunch} — Private Beta Active
-          </div>
-          
-          <h1 className="font-heading text-4.5xl sm:text-6xl font-bold tracking-tight text-primary leading-tight max-w-4xl mx-auto">
-            Own Your Restaurant. <span className="text-primary-mid">The AI-Ready OS.</span>
-          </h1>
-          
-          <p className="mt-6 text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto">
-            Start with seamless QR code table ordering, and expand to direct online orders, branded websites, customer CRM, and kitchen analytics—all from one unified platform without paying third-party marketplace commissions.
-          </p>
+      {/* Premium Product-First Hero Section */}
+      <section className="relative px-6 pt-16 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-bg">
+        {/* Premium Tech Grid Background (from Brand Guidelines) */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.07] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        
+        {/* Glowing Neon Shadow (from Brand Guidelines) */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 dark:bg-primary-mid/20 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none z-0 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/5 dark:bg-accent/10 rounded-full blur-[100px] translate-y-1/4 translate-x-1/4 pointer-events-none z-0"></div>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={() => onNavigate("home", "#waitlist")}
-              className="w-full sm:w-auto rounded-xl bg-accent px-8 py-4 text-base font-bold text-white shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/35 transition-all hover:-translate-y-0.5 text-center cursor-pointer"
+        <div className="mx-auto max-w-7xl relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Text & CTA */}
+          <div className="flex flex-col items-start text-left animate-fade-in-up">
+            <div
+              
+              
+              
             >
-              Join early access
-            </button>
-            <button 
-              onClick={() => onNavigate("home", "#how-it-works")}
-              className="w-full sm:w-auto rounded-xl border-2 border-primary/20 bg-transparent px-8 py-4 text-base font-bold text-primary hover:bg-primary/5 transition-all hover:border-primary-mid/40 text-center cursor-pointer"
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/10 bg-surface/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-text-secondary mb-8 shadow-sm dark:border-primary/20">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                </span>
+                Launching {CONFIG.expectedLaunch} — Private Beta Active
+              </div>
+            </div>
+            
+            <h1 
+              
+              
+              
+              className="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-primary leading-[1.05] max-w-2xl"
             >
-              Learn how it works
-            </button>
+              Own Your Restaurant.<br />
+              <span className="text-primary-mid">The AI-Ready OS.</span>
+            </h1>
+            
+            <p 
+              
+              
+              
+              className="mt-6 text-xl text-text-secondary max-w-xl font-medium leading-relaxed"
+            >
+              Start with seamless QR code table ordering, and expand to direct online orders, customer CRM, and kitchen analytics. All from one unified platform. <strong className="text-primary">Zero commissions.</strong>
+            </p>
+
+            <div 
+              
+              
+              
+              className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+            >
+              <button 
+                onClick={() => onNavigate("home", "#waitlist")}
+                className="w-full sm:w-auto rounded-full bg-accent px-8 py-4 text-base font-semibold text-white shadow-[0_4px_20px_rgba(216,90,48,0.2)] hover:shadow-[0_8px_30px_rgba(216,90,48,0.3)] dark:shadow-[0_4px_20px_rgba(226,106,64,0.3)] dark:hover:shadow-[0_8px_30px_rgba(226,106,64,0.4)] transition-all hover:-translate-y-0.5 text-center cursor-pointer"
+              >
+                Join early access
+              </button>
+              <button 
+                onClick={() => onNavigate("home", "#how-it-works")}
+                className="w-full sm:w-auto rounded-full border border-primary/10 bg-surface/50 backdrop-blur-sm px-8 py-4 text-base font-semibold text-primary hover:bg-primary/5 transition-all text-center cursor-pointer dark:border-primary/20"
+              >
+                Learn how it works
+              </button>
+            </div>
           </div>
 
-          {/* Live Tech Simulator widget */}
-          <div className="mt-16 sm:mt-20 max-w-4xl mx-auto">
+          {/* Right Column: Live Tech Simulator widget */}
+          <div 
+            
+            
+            
+            className="w-full relative z-10 lg:pl-8 mt-16 lg:mt-0"
+          >
             <InteractiveSimulator />
           </div>
+          
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="bg-surface py-20 px-6 border-y border-primary/10">
-        <ScrollReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight text-primary">
-              Own your restaurant. Own your customers. Grow without commissions.
+      {/* Problem Section (Editorial Typography Layout) */}
+      <section className="bg-bg py-16 md:py-24 px-6 relative overflow-hidden">
+        {/* Subtle center glow */}
+        <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-primary/5 dark:bg-primary-mid/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"></div>
+        <ScrollReveal duration={1000} yOffset={40} className="relative z-10">
+          <div className="mx-auto max-w-4xl text-center flex flex-col items-center">
+            <svg className="w-8 h-8 text-accent mb-8 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <h2 className="font-heading text-3xl md:text-5xl font-bold tracking-tight text-primary leading-tight">
+              Hotogram is not a food delivery marketplace.
             </h2>
-            <p className="mt-6 text-lg text-text-secondary leading-relaxed">
-              Hotogram is not a food delivery marketplace. We provide the software infrastructure that enables independent restaurants, cafés, and cloud kitchens to digitize their operations. Take complete control over your customer data, your brand, and your revenue.
+            <p className="mt-8 text-xl md:text-2xl text-text-secondary leading-relaxed font-medium">
+              We provide the software infrastructure that enables independent restaurants and cafés to digitize operations. Take complete control over your customer data, your brand, and your revenue.
             </p>
-            <div className="mt-8 text-primary-mid font-semibold">
-              The digital operating system built for modern hospitality businesses.
+            <div className="mt-10 px-6 py-2 rounded-full border border-primary/10 bg-primary/5 text-primary-mid font-semibold text-sm inline-block">
+              The digital operating system built for modern hospitality.
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* How It Works Section (Stacked card deck that slides in one step at a time linked to scroll) */}
-      <section id="how-it-works" ref={horizontalScrollRef} className="relative h-[320vh]">
-        <div className="sticky top-0 h-screen py-16 flex flex-col justify-center overflow-hidden bg-tech-grid/20">
-          
-          {/* Header */}
-          <div className="mx-auto w-full max-w-5xl px-4 md:px-6 mb-8 flex-shrink-0">
-            <span className="text-xs font-bold uppercase tracking-wider text-accent">Process Flow</span>
-            <h2 className="font-heading text-3.5xl md:text-5xl font-bold tracking-tight text-primary mt-2">
+      {/* How It Works Section (Premium Storytelling Layout) */}
+      <section id="how-it-works" className="py-16 md:py-24 bg-surface relative overflow-hidden">
+        {/* Decorative corner glows */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent/5 dark:bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 pointer-events-none z-0"></div>
+        <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-primary/5 dark:bg-primary-mid/10 rounded-full blur-[120px] -translate-x-1/2 pointer-events-none z-0"></div>
+        
+        <div className="mx-auto max-w-6xl px-6 relative z-10">
+          <div className="text-center mb-24 max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent mb-3 block">Process Flow</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary">
               The 4-Step Table Ordering Journey
             </h2>
-            <p className="mt-2 text-text-secondary text-sm md:text-base max-w-xl">
-              How Hotogram connects your guest tables directly to your kitchen. Scroll down to see the steps.
+            <p className="mt-4 text-text-secondary text-lg">
+              How Hotogram connects your guest tables directly to your kitchen.
             </p>
-            
-            {/* Dynamic Scroll Progress Bar */}
-            <div className="flex items-center gap-2 mt-4">
-              <span className="text-[10px] font-mono text-text-secondary">FLOW PROGRESS</span>
-              <div className="w-32 h-1.5 bg-primary/10 rounded-full overflow-hidden">
-                <motion.div 
-                  className="h-full bg-primary-mid" 
-                  style={{ width: useTransform(scrollHorizontalProgress, [0, 0.95], ["0%", "100%"]) }}
-                />
-              </div>
-            </div>
           </div>
 
-          {/* Stacking Cards Container */}
-          <div className="relative mx-auto w-full max-w-5xl px-4 md:px-6 h-[720px] xs:h-[750px] md:h-[420px] flex-grow max-h-[720px] xs:max-h-[750px] md:max-h-[420px]">
-            
-            {/* Card 1 */}
-            <motion.div 
-              style={{
-                scale: springCard1Scale,
-                opacity: springCard1Opacity,
-                zIndex: 10
-              }}
-              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
-            >
-              <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
+          <div className="space-y-20 md:space-y-24">
+            {/* Step 1 */}
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <ScrollReveal duration={1000} className="order-2 md:order-1">
+                <div className="bg-primary/5 rounded-3xl p-8 aspect-square flex items-center justify-center border border-primary/10 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-primary-mid/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img src="/images/scan_qr_mockup.png" alt="Scan QR Mockup" className="w-full h-full object-cover rounded-2xl shadow-xl transition-transform duration-700 group-hover:scale-[1.02]" />
+                </div>
+              </ScrollReveal>
+              <ScrollReveal duration={1000} delay={200} className="order-1 md:order-2">
                 <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary-mid font-bold text-base">
-                      1
-                    </span>
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Step One</span>
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/5 text-primary-mid font-bold text-xl border border-primary/10">1</span>
+                    <span className="text-sm font-bold text-accent uppercase tracking-widest">Step One</span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Scan QR Code</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">Scan QR Code</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
                     Diners sit at their table and scan a high-quality QR stand using their default camera app. No downloads, sign-ups, or app store friction.
                   </p>
-                </div>
-                <div className="text-[11px] font-mono text-text-secondary border-t border-primary/5 pt-3">
-                  STATUS: WAITING TO SCAN • TABLE_04
-                </div>
-              </div>
-              
-              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
-                  <img 
-                    src="/images/scan_qr_mockup.png" 
-                    alt="Diner scanning table QR code mockup" 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 2 */}
-            <motion.div 
-              style={{
-                x: springCard2X,
-                scale: springCard2Scale,
-                opacity: springCard2Opacity,
-                zIndex: 20
-              }}
-              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
-            >
-              <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary-mid font-bold text-base">
-                      2
-                    </span>
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Step Two</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-primary/10 shadow-sm text-xs font-mono text-text-secondary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary-mid"></span>
+                    STATUS: WAITING TO SCAN • TABLE_04
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Browse & Add to Cart</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Step 2 */}
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <ScrollReveal duration={1000} delay={200} className="order-1 md:order-1">
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/5 text-primary-mid font-bold text-xl border border-primary/10">2</span>
+                    <span className="text-sm font-bold text-accent uppercase tracking-widest">Step Two</span>
+                  </div>
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">Browse & Add to Cart</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
                     A fast digital menu loads immediately. Guests browse categories, customize toppings, select quantity counts, and add items to their checkout cart.
                   </p>
-                </div>
-                <div className="text-[11px] font-mono text-text-secondary border-t border-primary/5 pt-3">
-                  MENU: SYNCED LIVE • DINE-IN CARTS
-                </div>
-              </div>
-              
-              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
-                  <img 
-                    src="/images/digital_menu_mockup.png" 
-                    alt="Digital menu ordering and checkout mockup" 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 3 */}
-            <motion.div 
-              style={{
-                x: springCard3X,
-                scale: springCard3Scale,
-                opacity: springCard3Opacity,
-                zIndex: 30
-              }}
-              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
-            >
-              <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary-mid font-bold text-base">
-                      3
-                    </span>
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Step Three</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-primary/10 shadow-sm text-xs font-mono text-text-secondary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary-mid"></span>
+                    MENU: SYNCED LIVE • DINE-IN CARTS
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Order directly to Kitchen</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                </div>
+              </ScrollReveal>
+              <ScrollReveal duration={1000} className="order-2 md:order-2">
+                <div className="bg-primary/5 rounded-3xl p-8 aspect-square flex items-center justify-center border border-primary/10 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-primary-mid/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img src="/images/digital_menu_mockup.png" alt="Digital Menu Mockup" className="w-full h-full object-cover rounded-2xl shadow-xl transition-transform duration-700 group-hover:scale-[1.02]" />
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Step 3 */}
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <ScrollReveal duration={1000} className="order-2 md:order-1">
+                <div className="bg-primary/5 rounded-3xl p-8 aspect-square flex items-center justify-center border border-primary/10 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-primary-mid/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img src="/images/kitchen_kds_mockup.png" alt="Kitchen KDS Mockup" className="w-full h-full object-cover rounded-2xl shadow-xl transition-transform duration-700 group-hover:scale-[1.02]" />
+                </div>
+              </ScrollReveal>
+              <ScrollReveal duration={1000} delay={200} className="order-1 md:order-2">
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/5 text-primary-mid font-bold text-xl border border-primary/10">3</span>
+                    <span className="text-sm font-bold text-accent uppercase tracking-widest">Step Three</span>
+                  </div>
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">Order directly to Kitchen</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
                     Placing order triggers an instant Kitchen Ticket (KOT). It routes to the chef's KDS tablet screen or prints directly on POS ticket registers.
                   </p>
-                </div>
-                <div className="text-[11px] font-mono text-text-secondary border-t border-primary/5 pt-3">
-                  ROUTING: LOCAL NETWORK • KOT_PRINTER_01
-                </div>
-              </div>
-              
-              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
-                  <img 
-                    src="/images/kitchen_kds_mockup.png" 
-                    alt="Kitchen display system active orders mockup" 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 4 */}
-            <motion.div 
-              style={{
-                x: springCard4X,
-                zIndex: 40
-              }}
-              className="absolute inset-x-2 md:inset-x-6 top-0 bottom-0 flex flex-col md:flex-row bg-surface border border-primary/10 rounded-3xl shadow-neon overflow-hidden"
-            >
-              <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/5 text-primary-mid font-bold text-base">
-                      4
-                    </span>
-                    <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Step Four</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-primary/10 shadow-sm text-xs font-mono text-text-secondary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary-mid"></span>
+                    ROUTING: LOCAL NETWORK • KOT_PRINTER_01
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Pay & Get Served</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Step 4 */}
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <ScrollReveal duration={1000} delay={200} className="order-1 md:order-1">
+                <div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/5 text-primary-mid font-bold text-xl border border-primary/10">4</span>
+                    <span className="text-sm font-bold text-accent uppercase tracking-widest">Step Four</span>
+                  </div>
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">Pay & Get Served</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed mb-6">
                     When food is prepared, KDS alerts staff. Diners receive status notifications on their phone, complete UPI payments, and get digital receipts.
                   </p>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-primary/10 shadow-sm text-xs font-mono text-text-secondary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary-mid"></span>
+                    CHECKOUT: SECURE GATEWAY • SETTLED_DIRECT
+                  </div>
                 </div>
-                <div className="text-[11px] font-mono text-text-secondary border-t border-primary/5 pt-3">
-                  CHECKOUT: SECURE GATEWAY • SETTLED_DIRECT
+              </ScrollReveal>
+              <ScrollReveal duration={1000} className="order-2 md:order-2">
+                <div className="bg-primary/5 rounded-3xl p-8 aspect-square flex items-center justify-center border border-primary/10 overflow-hidden relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/5 to-primary-mid/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img src="/images/payment_receipt_mockup.png" alt="Payment Mockup" className="w-full h-full object-cover rounded-2xl shadow-xl transition-transform duration-700 group-hover:scale-[1.02]" />
                 </div>
-              </div>
-              
-              <div className="w-full md:w-1/2 flex-grow min-h-0 p-4 md:p-6 bg-primary/5 flex items-center justify-center border-t md:border-t-0 md:border-l border-primary/10">
-                <div className="h-full max-h-[160px] xs:max-h-[200px] md:max-h-[280px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-surface shadow-sm">
-                  <img 
-                    src="/images/payment_receipt_mockup.png" 
-                    alt="Digital payment success and checkout mockup" 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Use Cases Section */}
-      <section id="use-cases" className="py-20 bg-surface/50 border-t border-primary/10">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-3.5xl font-bold tracking-tight text-primary">
-              Built for your workflow
-            </h2>
-            <p className="mt-4 text-text-secondary max-w-xl mx-auto">
-              Hotogram adapts to your business model to drive ordering speed and lower staff burden.
-            </p>
+      <section id="use-cases" className="py-20 md:py-28 bg-bg border-t border-primary/5 relative overflow-hidden">
+        {/* Glow */}
+        <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+        
+        <div className="mx-auto max-w-6xl px-6 relative z-10">
+          <div className="text-center mb-20">
+            <ScrollReveal>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary">
+                Built for your workflow
+              </h2>
+              <p className="mt-6 text-xl text-text-secondary max-w-2xl mx-auto font-medium">
+                Hotogram adapts to your business model to drive ordering speed and lower staff burden.
+              </p>
+            </ScrollReveal>
           </div>
 
-          {/* Interactive Tabs */}
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex rounded-xl bg-primary/5 p-1 border border-primary/10">
-              <button
-                onClick={() => setActiveTab("restaurants")}
-                className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === "restaurants"
-                    ? "bg-primary-mid text-white shadow"
-                    : "text-text-secondary hover:text-primary"
-                }`}
-              >
-                Restaurants
-              </button>
-              <button
-                onClick={() => setActiveTab("cafes")}
-                className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === "cafes"
-                    ? "bg-primary-mid text-white shadow"
-                    : "text-text-secondary hover:text-primary"
-                }`}
-              >
-                Cafes
-              </button>
-              <button
-                onClick={() => setActiveTab("retail")}
-                className={`rounded-lg px-6 py-2.5 text-sm font-semibold transition-all cursor-pointer ${
-                  activeTab === "retail"
-                    ? "bg-primary-mid text-white shadow"
-                    : "text-text-secondary hover:text-primary"
-                }`}
-              >
-                Hotels & Salons
-              </button>
-            </div>
+          {/* Premium Interactive Tabs (Linear Style) */}
+          <div className="flex justify-center mb-16">
+            <ScrollReveal delay={100}>
+              <div className="inline-flex relative rounded-full bg-surface/50 border border-primary/10 p-1.5 backdrop-blur-md shadow-sm">
+                <button
+                  onClick={() => setActiveTab("restaurants")}
+                  className={`relative z-10 rounded-full px-8 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                    activeTab === "restaurants" ? "text-white" : "text-text-secondary hover:text-primary"
+                  }`}
+                >
+                  Restaurants
+                  {activeTab === "restaurants" && (
+                    <div  className="absolute inset-0 bg-primary-mid rounded-full -z-10 shadow-md shadow-primary-mid/20"  />
+                  )}
+                </button>
+                <button
+                  onClick={() => setActiveTab("cafes")}
+                  className={`relative z-10 rounded-full px-8 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                    activeTab === "cafes" ? "text-white" : "text-text-secondary hover:text-primary"
+                  }`}
+                >
+                  Cafes
+                  {activeTab === "cafes" && (
+                    <div  className="absolute inset-0 bg-primary-mid rounded-full -z-10 shadow-md shadow-primary-mid/20"  />
+                  )}
+                </button>
+                <button
+                  onClick={() => setActiveTab("retail")}
+                  className={`relative z-10 rounded-full px-8 py-3 text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                    activeTab === "retail" ? "text-white" : "text-text-secondary hover:text-primary"
+                  }`}
+                >
+                  Hotels & Salons
+                  {activeTab === "retail" && (
+                    <div  className="absolute inset-0 bg-primary-mid rounded-full -z-10 shadow-md shadow-primary-mid/20"  />
+                  )}
+                </button>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Tab Content */}
-          <div className="mx-auto max-w-4xl bg-surface p-5 md:p-12 rounded-3xl border border-primary/10 shadow-sm transition-all duration-300">
+          <div className="mx-auto max-w-5xl relative min-h-[400px]">
             {activeTab === "restaurants" && (
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div 
+                
+                
+                exit={{ opacity: 0, y: -20 }}
+                
+                className="grid md:grid-cols-2 gap-16 items-center"
+              >
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Dine-in Excellence</div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-4">Restaurants</h3>
-                  <p className="text-text-secondary text-base leading-relaxed mb-6">
+                  <div className="text-xs font-bold uppercase tracking-widest text-accent mb-4">Dine-in Excellence</div>
+                  <h3 className="font-heading text-4xl font-bold text-primary mb-6">Restaurants</h3>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-8">
                     Streamline your table ordering operations. Diners scan and place custom orders directly to the kitchen display. Staff focus on serving food hot instead of taking down pencil tickets.
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Instant kitchen ticket generation
                     </li>
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Direct-to-table delivery tracking
                     </li>
                   </ul>
                 </div>
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-[320px] md:max-w-[360px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-primary/5 shadow-sm">
-                    <img 
-                      src="/images/usecase_restaurants.png" 
-                      alt="Digital menu preview mockup for restaurants" 
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
+                <div className="w-full flex justify-end">
+                  <div className="w-full aspect-[4/5] overflow-hidden rounded-[2rem] border border-primary/10 shadow-2xl relative group">
+                    <div className="absolute inset-0 bg-primary-mid/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                    <img src="/images/usecase_restaurants.png" alt="Digital menu preview mockup for restaurants" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
               </div>
             )}
 
             {activeTab === "cafes" && (
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div 
+                
+                
+                exit={{ opacity: 0, y: -20 }}
+                
+                className="grid md:grid-cols-2 gap-16 items-center"
+              >
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-accent mb-2">High Turnover Speed</div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-4">Cafes & Bakeries</h3>
-                  <p className="text-text-secondary text-base leading-relaxed mb-6">
+                  <div className="text-xs font-bold uppercase tracking-widest text-accent mb-4">High Turnover Speed</div>
+                  <h3 className="font-heading text-4xl font-bold text-primary mb-6">Cafes & Bakeries</h3>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-8">
                     Eliminate long morning counter queues. Customers order their custom flat whites and croissants directly from their cozy corner tables and track preparation status live.
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Split-second UPI checkouts
                     </li>
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Built-in digital stamp card loyalty hooks
                     </li>
                   </ul>
                 </div>
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-[320px] md:max-w-[360px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-primary/5 shadow-sm">
-                    <img 
-                      src="/images/usecase_cafes.png" 
-                      alt="Express coffee ordering cart mockup for cafes" 
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
+                <div className="w-full flex justify-end">
+                  <div className="w-full aspect-[4/5] overflow-hidden rounded-[2rem] border border-primary/10 shadow-2xl relative group">
+                    <div className="absolute inset-0 bg-primary-mid/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                    <img src="/images/usecase_cafes.png" alt="Express coffee ordering cart mockup for cafes" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
               </div>
             )}
 
             {activeTab === "retail" && (
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div 
+                
+                
+                exit={{ opacity: 0, y: -20 }}
+                
+                className="grid md:grid-cols-2 gap-16 items-center"
+              >
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-accent mb-2">Catalog & Services</div>
-                  <h3 className="font-heading text-2xl font-bold text-primary mb-4">Hotels & Salons</h3>
-                  <p className="text-text-secondary text-base leading-relaxed mb-6">
+                  <div className="text-xs font-bold uppercase tracking-widest text-accent mb-4">Catalog & Services</div>
+                  <h3 className="font-heading text-4xl font-bold text-primary mb-6">Hotels & Salons</h3>
+                  <p className="text-text-secondary text-lg leading-relaxed mb-8">
                     Deliver orders directly to hotel rooms or salon chairs. Let guests browse room service catalogs or select premium salon treatments by scanning a localized QR code.
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Location-tied ordering (room numbers/stations)
                     </li>
-                    <li className="flex items-center gap-3 text-sm text-primary font-medium">
-                      <svg className="w-5 h-5 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <li className="flex items-center gap-4 text-base text-primary font-medium">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary-mid">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
                       Digital services catalog browsing
                     </li>
                   </ul>
                 </div>
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-[320px] md:max-w-[360px] aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-primary/5 shadow-sm">
-                    <img 
-                      src="/images/usecase_hotels.png" 
-                      alt="Room service digital catalog mockup for hotels and salon treatments" 
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
+                <div className="w-full flex justify-end">
+                  <div className="w-full aspect-[4/5] overflow-hidden rounded-[2rem] border border-primary/10 shadow-2xl relative group">
+                    <div className="absolute inset-0 bg-primary-mid/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
+                    <img src="/images/usecase_hotels.png" alt="Room service digital catalog mockup for hotels and salon treatments" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
                 </div>
               </div>
@@ -560,157 +540,128 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
         </div>
       </section>
 
-      {/* Why Hotogram Section (Comparison-style grid with 3D scroll entrance) */}
-      <section id="why-hotogram" ref={whySectionRef} style={{ perspective: "1000px" }} className="py-24 px-6 bg-surface border-t border-primary/10">
-        <div className="mx-auto max-w-7xl">
+      {/* Why Hotogram Section (Asymmetric Bento Box Layout) */}
+      <section id="why-hotogram" className="py-32 px-6 bg-surface">
+        <div className="mx-auto max-w-6xl">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <h2 className="font-heading text-3.5xl font-bold tracking-tight text-primary">
+            <div className="text-center mb-20 max-w-2xl mx-auto">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tight text-primary">
                 Why restaurants are ditching traditional aggregator networks
               </h2>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Value 1 */}
-            <ScrollReveal delay={0} duration={600}>
-              <TiltCard className="h-full">
-                <div className="p-6 md:p-8 rounded-3xl bg-bg/40 border border-primary/5 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="relative overflow-hidden rounded-2xl bg-primary/5 aspect-square mb-5 border border-primary/10 shadow-sm">
-                      <img 
-                        src="/images/story_zero_commission.png" 
-                        alt="Zero commission transactions saving money" 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-primary mb-3">Zero Commission</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      Save lakhs in aggregator cuts. You only pay a predictable flat subscription. Every single transaction rupee goes straight into your bank.
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[340px]">
+            {/* Value 1 (Large - spans 2 cols) */}
+            <ScrollReveal duration={800} className="md:col-span-2">
+              <div className="relative overflow-hidden rounded-[2rem] bg-bg border border-primary/5 h-full group p-10 flex flex-col justify-end">
+                <div className="relative z-10 max-w-md">
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">Zero Commission</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed">
+                    Save lakhs in aggregator cuts. You only pay a predictable flat subscription. Every single transaction rupee goes straight into your bank.
+                  </p>
                 </div>
-              </TiltCard>
+              </div>
             </ScrollReveal>
 
-            {/* Value 2 */}
-            <ScrollReveal delay={100} duration={600}>
-              <TiltCard className="h-full">
-                <div className="p-6 md:p-8 rounded-3xl bg-bg/40 border border-primary/5 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="relative overflow-hidden rounded-2xl bg-primary/5 aspect-square mb-5 border border-primary/10 shadow-sm">
-                      <img 
-                        src="/images/story_zero_downloads.png" 
-                        alt="Customer scanning QR code instantly in browser" 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-primary mb-3">Zero App Downloads</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      Aggregators force app installs to capture users. Hotogram opens directly inside the mobile browser for zero friction dine-in service.
-                    </p>
-                  </div>
+            {/* Value 2 (Small - spans 1 col) */}
+            <ScrollReveal duration={800} delay={150}>
+              <div className="relative overflow-hidden rounded-[2rem] bg-primary/5 border border-primary/10 h-full p-8 flex flex-col justify-between group">
+                <div className="w-16 h-16 rounded-2xl bg-primary-mid/10 flex items-center justify-center mb-6 border border-primary-mid/20">
+                  <svg className="w-8 h-8 text-primary-mid" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                 </div>
-              </TiltCard>
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Zero App Downloads</h3>
+                  <p className="text-base text-text-secondary leading-relaxed">
+                    Aggregators force app installs. Hotogram opens instantly in the browser.
+                  </p>
+                </div>
+              </div>
             </ScrollReveal>
 
-            {/* Value 3 */}
-            <ScrollReveal delay={200} duration={600}>
-              <TiltCard className="h-full">
-                <div className="p-6 md:p-8 rounded-3xl bg-bg/40 border border-primary/5 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="relative overflow-hidden rounded-2xl bg-primary/5 aspect-square mb-5 border border-primary/10 shadow-sm">
-                      <img 
-                        src="/images/story_fast_setup.png" 
-                        alt="Setup menu and QR stand layout in 10 minutes" 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-primary mb-3">Setup in 10 Minutes</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      Upload your menu, download your unique generated QR codes, print and stick. No complicated POS hardware setup required.
-                    </p>
-                  </div>
+            {/* Value 3 (Small - spans 1 col) */}
+            <ScrollReveal duration={800}>
+              <div className="relative overflow-hidden rounded-[2rem] bg-surface shadow-lg border border-primary/5 h-full p-8 flex flex-col justify-between group">
+                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 border border-accent/20">
+                  <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
-              </TiltCard>
+                <div>
+                  <h3 className="font-heading text-2xl font-bold text-primary mb-3">Setup in 10 Minutes</h3>
+                  <p className="text-base text-text-secondary leading-relaxed">
+                    Upload your menu, print QR codes, and stick. No complex hardware required.
+                  </p>
+                </div>
+              </div>
             </ScrollReveal>
 
-            {/* Value 4 */}
-            <ScrollReveal delay={300} duration={600}>
-              <TiltCard className="h-full">
-                <div className="p-6 md:p-8 rounded-3xl bg-bg/40 border border-primary/5 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="relative overflow-hidden rounded-2xl bg-primary/5 aspect-square mb-5 border border-primary/10 shadow-sm">
-                      <img 
-                        src="/images/story_data_ownership.png" 
-                        alt="Merchant owning guest contacts data ledger" 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-primary mb-3">You Own Your Data</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      Access your customer names, emails, and phone numbers directly. Re-engage them for festive deals without paying ads fees.
-                    </p>
-                  </div>
+            {/* Value 4 (Large - spans 2 cols) */}
+            <ScrollReveal duration={800} delay={150} className="md:col-span-2">
+              <div className="relative overflow-hidden rounded-[2rem] bg-bg border border-primary/5 h-full group p-10 flex flex-col justify-center">
+                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
+                 <div className="relative z-10 max-w-md">
+                  <h3 className="font-heading text-3xl font-bold text-primary mb-4">You Own Your Data</h3>
+                  <p className="text-lg text-text-secondary leading-relaxed">
+                    Access your customer names, emails, and phone numbers directly. Re-engage them for festive deals without paying ads fees.
+                  </p>
                 </div>
-              </TiltCard>
+              </div>
             </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* Founder Note Section */}
-      <section className="py-20 px-6 bg-primary-mid text-white dark:bg-surface dark:text-primary border-y dark:border-primary/10">
+      <section className="py-24 px-6 bg-primary-mid text-white dark:bg-surface dark:text-primary">
         <ScrollReveal>
-          <div className="mx-auto max-w-4xl">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
+          <div className="mx-auto max-w-5xl bg-black/10 dark:bg-primary-mid/5 rounded-[2.5rem] p-8 md:p-12 border border-white/10 dark:border-primary-mid/20">
+            <div className="grid md:grid-cols-3 gap-12 items-center">
               <div className="md:col-span-1 flex flex-col items-center md:items-start">
-                <div className="w-full max-w-[200px] md:max-w-[240px] aspect-square rounded-2xl overflow-hidden border-2 border-white/20 dark:border-primary-mid mb-4 shadow-sm bg-white/10 flex items-center justify-center">
+                <div className="w-full max-w-[200px] md:max-w-[240px] aspect-square rounded-full overflow-hidden border-[6px] border-white/20 dark:border-primary-mid/30 mb-6 shadow-2xl flex items-center justify-center">
                   <img 
                     src="/images/founder.png" 
                     alt="S Abbasy" 
                     className="w-full h-full object-cover" 
                   />
                 </div>
-                <div className="text-center md:text-left">
-                  <div className="font-bold text-white dark:text-primary text-base">S Abbasy</div>
-                  <div className="text-xs text-teal-200 dark:text-primary-mid mb-4">Founder, Hotogram</div>
+                <div className="text-center md:text-left w-full pl-2">
+                  <div className="font-heading font-bold text-white dark:text-primary text-xl">S Abbasy</div>
+                  <div className="text-sm font-semibold text-teal-200 dark:text-primary-mid mb-6 uppercase tracking-wider">Founder, Hotogram</div>
                   
                   {/* Social links */}
-                  <div className="flex items-center justify-center md:justify-start gap-3">
-                    <a href="https://in.linkedin.com/in/sabbasy" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors animate-pulse-slow" aria-label="LinkedIn">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  <div className="flex items-center justify-center md:justify-start gap-4">
+                    <a href="https://in.linkedin.com/in/sabbasy" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors hover:scale-110" aria-label="LinkedIn">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
-                    <a href="https://twitter.com/sabbasy_" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors" aria-label="Twitter">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    <a href="https://twitter.com/sabbasy_" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors hover:scale-110" aria-label="Twitter">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/sabbasy/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors" aria-label="Instagram">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <a href="https://www.instagram.com/sabbasy/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors hover:scale-110" aria-label="Instagram">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </a>
-                    <a href="https://sabbasy.in/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors" aria-label="Website">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <a href="https://sabbasy.in/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white dark:text-primary/70 dark:hover:text-primary-mid transition-colors hover:scale-110" aria-label="Website">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                     </a>
                   </div>
                 </div>
               </div>
               
-              <div className="md:col-span-2 flex flex-col items-center md:items-start mt-6 md:mt-0">
-                <h2 className="font-heading text-2.5xl font-bold text-white dark:text-primary mb-6">Why we built Hotogram</h2>
-                <blockquote className="space-y-4 text-base text-teal-100/90 dark:text-text-secondary leading-relaxed italic mb-8">
+              <div className="md:col-span-2 flex flex-col items-center md:items-start">
+                <h2 className="font-heading text-4xl font-bold text-white dark:text-primary mb-8">Why we built Hotogram</h2>
+                <div className="space-y-6 text-xl text-teal-50 dark:text-text-secondary leading-relaxed font-medium">
                   <p>
-                    "Running and working with local businesses in Kashmir, I saw firsthand how hard-earned restaurant margins were slipping away to aggregator giants. Up to 25% commission is painful enough on delivery, but paying that on dine-in guests sits wrong."
+                    "Running local businesses in Kashmir, I saw firsthand how hard-earned restaurant margins were slipping away to aggregator giants. Up to 25% commission is painful enough on delivery, but paying that on dine-in guests sits wrong."
                   </p>
                   <p>
                     "We built Hotogram to return ownership back to the merchant. Local food businesses shouldn't have to choose between going digital and staying profitable. With a simple QR scan, your kitchen gets orders immediately, and your profits stay with you. That is our promise."
                   </p>
-                </blockquote>
+                </div>
                 
-                {/* Redirection CTA to full journey article */}
+                {/* Redirection CTA */}
                 <a 
                   href="https://sabbasy.in/blog/building-hotogram" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 text-sm font-bold text-white shadow-md hover:bg-accent/90 hover:shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer"
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-primary-mid shadow-lg hover:bg-white/90 hover:scale-105 transition-all cursor-pointer dark:bg-primary-mid dark:text-white"
                 >
                   Read our full journey story
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -735,48 +686,51 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
           </p>
 
           {/* Waitlist Live Counter */}
-          <div className="mt-6 inline-flex items-center gap-2.5 bg-primary-mid/5 border border-primary-mid/20 rounded-xl px-5 py-2">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-accent animate-pulse"></span>
-            <span className="font-heading text-sm font-semibold text-primary">
-              <strong className="text-primary-mid">{waitlistCount}</strong> businesses already on the list
+          <div className="mt-8 inline-flex items-center gap-3 bg-surface border border-primary-mid/20 shadow-sm rounded-full px-6 py-3">
+            <span className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+            </span>
+            <span className="font-sans text-sm font-medium text-text-secondary">
+              <strong className="text-primary-mid font-bold text-base">{waitlistCount}</strong> businesses on the list
             </span>
           </div>
 
           {/* Form */}
-          <div className="mt-10 max-w-md mx-auto">
+          <div className="mt-12 max-w-lg mx-auto">
             {submitSuccess ? (
-              <div className="rounded-2xl bg-primary-mid/10 border border-primary-mid/30 p-8 text-center animate-fade-in">
-                <svg className="w-12 h-12 text-primary-mid mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div   className="rounded-[2rem] bg-primary-mid/5 border border-primary-mid/20 p-10 text-center shadow-lg">
+                <svg className="w-16 h-16 text-primary-mid mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h3 className="font-heading text-lg font-bold text-primary">You are on the list!</h3>
-                <p className="text-sm text-text-secondary mt-2">
+                <h3 className="font-heading text-2xl font-bold text-primary">You are on the list!</h3>
+                <p className="text-base text-text-secondary mt-3">
                   Thank you for joining. We will reach out with early beta credentials soon.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleWaitlistSubmit} className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleWaitlistSubmit} className="space-y-5 bg-surface/50 p-6 md:p-8 rounded-[2.5rem] border border-primary/10 shadow-xl backdrop-blur-sm">
+                <div className="flex flex-col gap-4">
                   <input
                     type="tel"
                     required
                     placeholder="Mobile number *"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-xl border border-primary/20 bg-surface px-5 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:outline-none transition-colors"
+                    className="w-full rounded-full border border-primary/10 bg-bg px-6 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:ring-4 focus:ring-primary-mid/10 focus:outline-none transition-all shadow-inner"
                   />
                   <input
                     type="email"
                     placeholder="Business email (optional)"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-xl border border-primary/20 bg-surface px-5 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:outline-none transition-colors"
+                    className="w-full rounded-full border border-primary/10 bg-bg px-6 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:ring-4 focus:ring-primary-mid/10 focus:outline-none transition-all shadow-inner"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting || !phone}
-                  className="w-full rounded-xl bg-accent px-6 py-4 font-bold text-white transition-colors hover:bg-accent/90 disabled:opacity-70 cursor-pointer text-center"
+                  className="w-full rounded-full bg-primary-mid px-6 py-4 font-bold text-white transition-all hover:bg-primary hover:shadow-lg disabled:opacity-70 cursor-pointer text-center"
                 >
                   {isSubmitting ? "Joining..." : "Get early access"}
                 </button>
@@ -858,3 +812,4 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
     </>
   );
 }
+

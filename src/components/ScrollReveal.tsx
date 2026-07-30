@@ -1,57 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
-  delay?: number; // Delay in ms before animation runs (default 0)
-  duration?: number; // Duration of animation in ms (default 600)
+  delay?: number; // Delay in ms before animation runs
+  duration?: number; // Duration of animation in ms
+  yOffset?: number; // Y translation offset in px
 }
 
-export default function ScrollReveal({ children, className = "", delay = 0, duration = 700 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+export default function ScrollReveal({ 
+  children, 
+  className = "", 
+  delay = 0, 
+  duration = 800,
+  yOffset = 30
+}: ScrollRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Once the animation starts, we can stop observing this element
-          if (elementRef.current) {
-            observer.unobserve(elementRef.current);
-          }
+          setIsInView(true);
+          // Once it's in view, we don't need to observe it anymore (runs once)
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the viewport center
-      }
+      { rootMargin: "0px 0px -100px 0px" }
     );
 
-    const currentElement = elementRef.current;
-    if (currentElement) {
-      observer.observe(currentElement);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
+      if (ref.current) observer.unobserve(ref.current);
     };
   }, []);
 
   return (
     <div
-      ref={elementRef}
+      ref={ref}
+      className={`transition-all ${className}`}
       style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateY(0)" : `translateY(${yOffset}px)`,
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)"
       }}
-      className={`transition-all cubic-bezier(0.16, 1, 0.3, 1) will-change-[transform,opacity] ${
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-10"
-      } ${className}`}
     >
       {children}
     </div>

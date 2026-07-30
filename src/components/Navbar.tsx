@@ -16,7 +16,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-bg/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-primary/5 bg-bg/70 backdrop-blur-xl transition-all duration-300 shadow-sm shadow-primary/5">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
         {/* Logo left */}
@@ -51,53 +51,53 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-2">
           <button 
             onClick={() => handleLinkClick("#how-it-works")}
-            className="text-sm font-medium text-text-secondary transition-colors hover:text-primary cursor-pointer"
+            className="text-sm font-medium text-text-secondary transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer"
           >
             How it works
           </button>
           <button 
             onClick={() => handleLinkClick("#use-cases")}
-            className="text-sm font-medium text-text-secondary transition-colors hover:text-primary cursor-pointer"
+            className="text-sm font-medium text-text-secondary transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer"
           >
             Use cases
           </button>
           <button 
             onClick={() => handleLinkClick("#faq")}
-            className="text-sm font-medium text-text-secondary transition-colors hover:text-primary cursor-pointer"
+            className="text-sm font-medium text-text-secondary transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer"
           >
             FAQ
           </button>
           <button 
             onClick={() => onNavigate("blog-list")}
-            className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-              currentPage.startsWith("blog") ? "text-primary font-semibold" : "text-text-secondary"
+            className={`text-sm transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer ${
+              currentPage.startsWith("blog") ? "text-primary font-semibold" : "text-text-secondary font-medium"
             }`}
           >
             Resources
           </button>
           <button 
             onClick={() => onNavigate("pricing")}
-            className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-              currentPage === "pricing" ? "text-primary font-semibold" : "text-text-secondary"
+            className={`text-sm transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer ${
+              currentPage === "pricing" ? "text-primary font-semibold" : "text-text-secondary font-medium"
             }`}
           >
             Pricing
           </button>
           <button 
             onClick={() => onNavigate("about")}
-            className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-              currentPage === "about" ? "text-primary font-semibold" : "text-text-secondary"
+            className={`text-sm transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer ${
+              currentPage === "about" ? "text-primary font-semibold" : "text-text-secondary font-medium"
             }`}
           >
             About Us
           </button>
           <button 
             onClick={() => onNavigate("contact")}
-            className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-              currentPage === "contact" ? "text-primary font-semibold" : "text-text-secondary"
+            className={`text-sm transition-all duration-200 hover:text-primary hover:bg-primary/5 px-3 py-1.5 rounded-lg cursor-pointer ${
+              currentPage === "contact" ? "text-primary font-semibold" : "text-text-secondary font-medium"
             }`}
           >
             Contact
@@ -127,7 +127,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
           <button 
             onClick={() => handleLinkClick("#waitlist")}
-            className="rounded-lg bg-primary-mid px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary hover:shadow cursor-pointer"
+            className="rounded-full bg-primary-mid px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-mid/20 transition-all hover:bg-primary hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
           >
             Join early access
           </button>

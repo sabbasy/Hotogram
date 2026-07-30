@@ -14,8 +14,8 @@
   --font-heading: 'Manrope', 'Inter', sans-serif;
   --font-sans: 'Inter', sans-serif;
   
-  --shadow-neon: 0 4px 20px rgba(8, 80, 65, 0.05);
-  --shadow-neon-accent: 0 4px 20px rgba(216, 90, 48, 0.08);
+  --shadow-neon: 0 8px 30px rgba(8, 80, 65, 0.08), 0 4px 10px rgba(8, 80, 65, 0.04);
+  --shadow-neon-accent: 0 12px 40px rgba(216, 90, 48, 0.12), 0 4px 12px rgba(216, 90, 48, 0.06);
 }
 
 .dark {
@@ -26,8 +26,8 @@
   --color-surface: #06211B;          /* Dark teal card backgrounds */
   --color-text-secondary: #8AA496;   /* Muted teal-gray secondary */
   
-  --shadow-neon: 0 0 25px rgba(16, 185, 129, 0.2);
-  --shadow-neon-accent: 0 0 25px rgba(226, 106, 64, 0.3);
+  --shadow-neon: 0 8px 30px rgba(16, 185, 129, 0.15), 0 4px 10px rgba(16, 185, 129, 0.08);
+  --shadow-neon-accent: 0 12px 40px rgba(226, 106, 64, 0.2), 0 4px 12px rgba(226, 106, 64, 0.1);
 }
 
 @theme {
@@ -43,6 +43,13 @@
   
   --shadow-neon: var(--shadow-neon);
   --shadow-neon-accent: var(--shadow-neon-accent);
+  
+  --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 html {
