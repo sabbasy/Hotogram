@@ -427,7 +427,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
               <div 
                 
                 
-                exit={{ opacity: 0, y: -20 }}
+                
                 
                 className="grid md:grid-cols-2 gap-16 items-center"
               >
@@ -465,7 +465,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
               <div 
                 
                 
-                exit={{ opacity: 0, y: -20 }}
+                
                 
                 className="grid md:grid-cols-2 gap-16 items-center"
               >
@@ -503,7 +503,7 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
               <div 
                 
                 
-                exit={{ opacity: 0, y: -20 }}
+                
                 
                 className="grid md:grid-cols-2 gap-16 items-center"
               >
@@ -812,4 +812,5 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
     </>
   );
 }
+
 
