@@ -1,4 +1,5 @@
 import SEO from "../components/SEO";
+import { CONFIG } from "../config";
 
 export interface BlogPostItem {
   slug: string;
@@ -113,20 +114,20 @@ export default function BlogList({ onNavigate }: BlogListProps) {
             ))}
           </div>
 
-          {/* Bottom Waitlist CTA */}
+          {/* Bottom CTA */}
           <div className="mt-20 rounded-3xl bg-primary-mid text-white dark:bg-surface dark:text-primary border dark:border-primary/10 p-6 md:p-12 text-center max-w-4xl mx-auto">
             <h3 className="font-heading text-2xl md:text-3xl font-bold text-white dark:text-primary mb-4">
               Ready to take control of your restaurant ordering?
             </h3>
             <p className="text-teal-100/90 dark:text-text-secondary text-sm md:text-base max-w-xl mx-auto mb-8">
-              Join the pre-launch waitlist and get first access when we launch in Q3 2026.
+              Start your zero-commission QR ordering system today. Setup takes under 10 minutes.
             </p>
-            <button
-              onClick={() => onNavigate("home", "#waitlist")}
-              className="rounded-xl bg-accent px-8 py-3.5 text-sm font-bold text-white shadow-md hover:bg-accent/90 transition-colors cursor-pointer"
+            <a
+              href={CONFIG.signupUrl}
+              className="inline-block rounded-xl bg-accent px-8 py-3.5 text-sm font-bold text-white shadow-md hover:bg-accent/90 transition-colors cursor-pointer"
             >
-              Join the waitlist
-            </button>
+              Get Started Free
+            </a>
           </div>
         </div>
       </section>

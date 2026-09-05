@@ -1,6 +1,7 @@
 import React from "react";
 import SEO from "../components/SEO";
 import { BLOG_POSTS } from "./BlogList";
+import { CONFIG } from "../config";
 
 interface BlogPostProps {
   slug: string;
@@ -219,7 +220,7 @@ export default function BlogPost({ slug, onNavigate }: BlogPostProps) {
             {articleContent[slug]}
           </div>
 
-          {/* Footer waitlist card */}
+              {/* Footer CTA card */}
           <div className="mt-16 rounded-3xl border border-primary/10 bg-surface p-6 md:p-10 text-center">
             <h3 className="font-heading text-xl md:text-2xl font-bold text-primary mb-2">
               Bypass delivery app cuts on your dine-in tables
@@ -228,17 +229,17 @@ export default function BlogPost({ slug, onNavigate }: BlogPostProps) {
               Establish zero-commission QR menu ordering at your restaurant with Hotogram. Setup takes under 10 minutes.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3">
-              <button
-                onClick={() => onNavigate("home", "#waitlist")}
-                className="rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white shadow hover:bg-accent/90 transition-all cursor-pointer"
+              <a
+                href={CONFIG.signupUrl}
+                className="rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white shadow hover:bg-accent/90 transition-all cursor-pointer text-center"
               >
-                Join waitlist
-              </button>
+                Get Started Free
+              </a>
               <button
-                onClick={() => onNavigate("home", "#demo")}
+                onClick={() => onNavigate("contact")}
                 className="rounded-xl border border-primary/20 bg-transparent px-6 py-3 text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer"
               >
-                Book a demo
+                Contact Team
               </button>
             </div>
           </div>

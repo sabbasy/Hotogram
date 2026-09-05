@@ -5,34 +5,21 @@ import FAQAccordion from "../components/FAQAccordion";
 import type { FAQItem } from "../components/FAQAccordion";
 import InteractiveSimulator from "../components/InteractiveSimulator";
 import ScrollReveal from "../components/ScrollReveal";
-import { submitToGoogleSheets } from "../utils/forms";
 
 export default function Home({ onNavigate }: { onNavigate: (page: string, hash?: string) => void }) {
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [waitlistCount, setWaitlistCount] = useState(CONFIG.initialWaitlistCount);
   const [activeTab, setActiveTab] = useState<"restaurants" | "cafes" | "retail">("restaurants");
   const [calendlyLoaded, setCalendlyLoaded] = useState(false);
   
   const calendlyRef = useRef<HTMLDivElement>(null);
 
-  // Removed unused scroll logic for old How It works section
-
-  // Initialize waitlist counter from localStorage if available
+  // Initialize merchant counter from localStorage if available
   useEffect(() => {
-    const savedCount = localStorage.getItem("hotogram_waitlist_count");
-    const hasJoined = localStorage.getItem("hotogram_joined_waitlist");
-    
+    const savedCount = localStorage.getItem("hotogram_merchant_count");
     if (savedCount) {
       setWaitlistCount(parseInt(savedCount, 10));
     } else {
-      localStorage.setItem("hotogram_waitlist_count", CONFIG.initialWaitlistCount.toString());
-    }
-
-    if (hasJoined === "true") {
-      setSubmitSuccess(true);
+      localStorage.setItem("hotogram_merchant_count", CONFIG.initialWaitlistCount.toString());
     }
   }, []);
 
@@ -62,35 +49,6 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
     };
   }, [calendlyLoaded]);
 
-  const handleWaitlistSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!phone) return;
-
-    setIsSubmitting(true);
-    
-    try {
-      // Post details to Google Sheets
-      await submitToGoogleSheets({
-        formType: "General Waitlist",
-        phone: phone,
-        email: email || undefined
-      });
-      
-      // Update states
-      const newCount = waitlistCount + 1;
-      setWaitlistCount(newCount);
-      localStorage.setItem("hotogram_waitlist_count", newCount.toString());
-      localStorage.setItem("hotogram_joined_waitlist", "true");
-      setSubmitSuccess(true);
-      setEmail("");
-      setPhone("");
-    } catch (err) {
-      console.error("Waitlist error:", err);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const faqItems: FAQItem[] = [
     {
       question: "Is there really no commission?",
@@ -105,8 +63,8 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
       answer: "You do not need any special hardware or proprietary terminals. Hotogram works on any smartphone, tablet, or laptop you already own. We generate high-quality QR codes for your tables, which you print and stick. Setup takes less than 10 minutes."
     },
     {
-      question: "When is it launching?",
-      answer: `We are currently in a private beta testing phase with select partners. We are launching public access in ${CONFIG.expectedLaunch}. Joining the early access list locks in early-bird subscription rates.`
+      question: "How do I get started with Hotogram?",
+      answer: "Hotogram is live! You can create your account at app.hotogram.com in under two minutes, set up your digital menu, and start taking QR orders at your restaurant today."
     },
     {
       question: "Is my customer data secure?",
@@ -149,24 +107,17 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
           
           {/* Left Column: Text & CTA */}
           <div className="flex flex-col items-start text-left animate-fade-in-up">
-            <div
-              
-              
-              
-            >
+            <div>
               <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/10 bg-surface/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-text-secondary mb-8 shadow-sm dark:border-primary/20">
                 <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                Launching {CONFIG.expectedLaunch} — Private Beta Active
+                Now Live — Ready for Restaurants & Cafés
               </div>
             </div>
             
             <h1 
-              
-              
-              
               className="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-primary leading-[1.05] max-w-2xl"
             >
               Own Your Restaurant.<br />
@@ -174,32 +125,26 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
             </h1>
             
             <p 
-              
-              
-              
               className="mt-6 text-xl text-text-secondary max-w-xl font-medium leading-relaxed"
             >
               Start with seamless QR code table ordering, and expand to direct online orders, customer CRM, and kitchen analytics. All from one unified platform. <strong className="text-primary">Zero commissions.</strong>
             </p>
 
             <div 
-              
-              
-              
               className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
             >
-              <button 
-                onClick={() => onNavigate("home", "#waitlist")}
+              <a 
+                href={CONFIG.signupUrl}
                 className="w-full sm:w-auto rounded-full bg-accent px-8 py-4 text-base font-semibold text-white shadow-[0_4px_20px_rgba(216,90,48,0.2)] hover:shadow-[0_8px_30px_rgba(216,90,48,0.3)] dark:shadow-[0_4px_20px_rgba(226,106,64,0.3)] dark:hover:shadow-[0_8px_30px_rgba(226,106,64,0.4)] transition-all hover:-translate-y-0.5 text-center cursor-pointer"
               >
-                Join early access
-              </button>
-              <button 
-                onClick={() => onNavigate("home", "#how-it-works")}
+                Get started free
+              </a>
+              <a 
+                href={CONFIG.loginUrl}
                 className="w-full sm:w-auto rounded-full border border-primary/10 bg-surface/50 backdrop-blur-sm px-8 py-4 text-base font-semibold text-primary hover:bg-primary/5 transition-all text-center cursor-pointer dark:border-primary/20"
               >
-                Learn how it works
-              </button>
+                Sign in
+              </a>
             </div>
           </div>
 
@@ -675,92 +620,71 @@ export default function Home({ onNavigate }: { onNavigate: (page: string, hash?:
       </section>
 
       {/* Waitlist / Email Capture Section */}
+      {/* Live Get Started & Onboarding Section */}
       <section id="waitlist" className="py-24 px-6 bg-bg">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-3.5xl font-bold text-primary tracking-tight">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="font-heading text-3.5xl md:text-4xl font-bold text-primary tracking-tight">
             Stop losing margin to aggregators.
           </h2>
           
-          <p className="mt-4 text-text-secondary text-base max-w-lg mx-auto">
-            Lock in early-bird rates. Join our waitlist today to be notified when public beta starts.
+          <p className="mt-4 text-text-secondary text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+            Create your digital menu, generate QR codes for your tables, and start taking direct zero-commission dine-in orders today.
           </p>
 
-          {/* Waitlist Live Counter */}
+          {/* Live Merchant Counter */}
           <div className="mt-8 inline-flex items-center gap-3 bg-surface border border-primary-mid/20 shadow-sm rounded-full px-6 py-3">
             <span className="flex h-3 w-3 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
             <span className="font-sans text-sm font-medium text-text-secondary">
-              <strong className="text-primary-mid font-bold text-base">{waitlistCount}</strong> businesses on the list
+              <strong className="text-primary-mid font-bold text-base">{waitlistCount}+</strong> businesses on Hotogram
             </span>
           </div>
 
-          {/* Form */}
-          <div className="mt-12 max-w-lg mx-auto">
-            {submitSuccess ? (
-              <div   className="rounded-[2rem] bg-primary-mid/5 border border-primary-mid/20 p-10 text-center shadow-lg">
-                <svg className="w-16 h-16 text-primary-mid mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="font-heading text-2xl font-bold text-primary">You are on the list!</h3>
-                <p className="text-base text-text-secondary mt-3">
-                  Thank you for joining. We will reach out with early beta credentials soon.
-                </p>
+          {/* Quick Launch Action Card */}
+          <div className="mt-12 max-w-xl mx-auto bg-surface/70 p-8 md:p-10 rounded-[2.5rem] border border-primary/10 shadow-xl backdrop-blur-sm">
+            <div className="flex flex-col gap-4">
+              <a
+                href={CONFIG.signupUrl}
+                className="w-full rounded-full bg-accent px-8 py-4 font-bold text-white text-lg transition-all hover:bg-accent/90 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer text-center block"
+              >
+                Launch Your Restaurant — Start Free
+              </a>
+              <div className="flex items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-text-secondary pt-2 flex-wrap">
+                <span>✓ No credit card required</span>
+                <span>•</span>
+                <span>✓ 10-minute setup</span>
+                <span>•</span>
+                <span>✓ 0% commission</span>
               </div>
-            ) : (
-              <form onSubmit={handleWaitlistSubmit} className="space-y-5 bg-surface/50 p-6 md:p-8 rounded-[2.5rem] border border-primary/10 shadow-xl backdrop-blur-sm">
-                <div className="flex flex-col gap-4">
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Mobile number *"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full rounded-full border border-primary/10 bg-bg px-6 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:ring-4 focus:ring-primary-mid/10 focus:outline-none transition-all shadow-inner"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Business email (optional)"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full rounded-full border border-primary/10 bg-bg px-6 py-4 text-primary placeholder-text-secondary/60 focus:border-primary-mid focus:ring-4 focus:ring-primary-mid/10 focus:outline-none transition-all shadow-inner"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !phone}
-                  className="w-full rounded-full bg-primary-mid px-6 py-4 font-bold text-white transition-all hover:bg-primary hover:shadow-lg disabled:opacity-70 cursor-pointer text-center"
-                >
-                  {isSubmitting ? "Joining..." : "Get early access"}
-                </button>
-                <p className="text-xs text-text-secondary text-center">
-                  We value your privacy. Phone number is required for verification.
-                </p>
-              </form>
-            )}
-          </div>
+            </div>
 
-          {/* Divider */}
-          <div className="my-10 flex items-center justify-center text-xs text-text-secondary uppercase tracking-wider font-semibold">
-            <span className="w-16 border-t border-primary/10 mr-4"></span>
-            Or chat with us
-            <span className="w-16 border-t border-primary/10 ml-4"></span>
-          </div>
+            <div className="my-8 flex items-center justify-center text-xs text-text-secondary uppercase tracking-wider font-semibold">
+              <span className="w-16 border-t border-primary/10 mr-4"></span>
+              Or get assisted onboarding
+              <span className="w-16 border-t border-primary/10 ml-4"></span>
+            </div>
 
-          {/* WhatsApp CTA */}
-          <div className="flex justify-center">
-            <a
-              href={CONFIG.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-xl bg-emerald-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-emerald-600/20 hover:shadow-xl hover:bg-emerald-700 transition-all hover:-translate-y-0.5 cursor-pointer"
-            >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M12.004 2C6.51 2 2.014 6.5 2 12a10 10 0 001.393 5.081L2 22l5.076-1.333A9.927 9.927 0 0012.004 22c5.495 0 9.992-4.5 9.996-10 0-2.667-1.04-5.174-2.93-7.062C17.18 3.05 14.67 2 12.004 2zM18.15 15.65c-.27-.134-1.583-.78-1.826-.87-.243-.087-.42-.13-.598.135-.178.266-.69.87-.845 1.05-.156.178-.311.2-.58.066a7.312 7.312 0 01-2.158-1.332 8.063 8.063 0 01-1.493-1.859c-.156-.266-.017-.41.118-.544.12-.121.27-.312.4-.467.135-.156.179-.266.27-.442.088-.178.043-.333-.023-.467-.066-.134-.597-1.442-.818-1.97-.215-.52-.47-.45-.6-.457-.123-.006-.266-.008-.41-.008a.792.792 0 00-.573.267c-.198.217-.753.737-.753 1.797 0 1.06.775 2.083.882 2.23.109.15 1.523 2.327 3.69 3.26.516.222.919.355 1.233.454.518.165.99.14 1.36.086.415-.062 1.582-.647 1.805-1.27.222-.625.222-1.162.156-1.272-.066-.109-.244-.173-.514-.308z" clipRule="evenodd" />
-              </svg>
-              Message us on WhatsApp
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={CONFIG.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-emerald-600/20 hover:bg-emerald-700 transition-all cursor-pointer"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12.004 2C6.51 2 2.014 6.5 2 12a10 10 0 001.393 5.081L2 22l5.076-1.333A9.927 9.927 0 0012.004 22c5.495 0 9.992-4.5 9.996-10 0-2.667-1.04-5.174-2.93-7.062C17.18 3.05 14.67 2 12.004 2zM18.15 15.65c-.27-.134-1.583-.78-1.826-.87-.243-.087-.42-.13-.598.135-.178.266-.69.87-.845 1.05-.156.178-.311.2-.58.066a7.312 7.312 0 01-2.158-1.332 8.063 8.063 0 01-1.493-1.859c-.156-.266-.017-.41.118-.544.12-.121.27-.312.4-.467.135-.156.179-.266.27-.442.088-.178.043-.333-.023-.467-.066-.134-.597-1.442-.818-1.97-.215-.52-.47-.45-.6-.457-.123-.006-.266-.008-.41-.008a.792.792 0 00-.573.267c-.198.217-.753.737-.753 1.797 0 1.06.775 2.083.882 2.23.109.15 1.523 2.327 3.69 3.26.516.222.919.355 1.233.454.518.165.99.14 1.36.086.415-.062 1.582-.647 1.805-1.27.222-.625.222-1.162.156-1.272-.066-.109-.244-.173-.514-.308z" clipRule="evenodd" />
+                </svg>
+                WhatsApp Setup Support
+              </a>
+              <button
+                onClick={() => onNavigate("contact")}
+                className="inline-flex items-center justify-center rounded-full border border-primary/20 bg-surface px-6 py-3.5 text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer"
+              >
+                Request a Callback
+              </button>
+            </div>
           </div>
         </div>
       </section>

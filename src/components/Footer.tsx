@@ -45,6 +45,22 @@ export default function Footer({ onNavigate }: FooterProps) {
             </h4>
             <ul className="mt-4 space-y-2">
               <li>
+                <a 
+                  href={CONFIG.signupUrl}
+                  className="text-sm text-accent hover:text-accent/80 font-semibold transition-colors cursor-pointer"
+                >
+                  Create Account (Free)
+                </a>
+              </li>
+              <li>
+                <a 
+                  href={CONFIG.loginUrl}
+                  className="text-sm text-text-secondary hover:text-primary transition-colors cursor-pointer"
+                >
+                  Sign in
+                </a>
+              </li>
+              <li>
                 <button 
                   onClick={() => onNavigate("home", "#how-it-works")}
                   className="text-sm text-text-secondary hover:text-primary transition-colors cursor-pointer"

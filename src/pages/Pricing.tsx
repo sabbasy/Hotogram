@@ -1,4 +1,5 @@
 import ScrollReveal from "../components/ScrollReveal";
+import { CONFIG } from "../config";
 
 interface PricingProps {
   onNavigate: (page: string, hash?: string) => void;
@@ -31,10 +32,10 @@ export default function Pricing({ onNavigate }: PricingProps) {
                   Perfect for small cafes starting their digital journey.
                 </p>
                 <div className="flex items-baseline gap-1 mb-6">
-                  <span className="font-heading text-3xl font-bold text-primary">₹499</span>
-                  <span className="text-sm text-text-secondary">/mo</span>
+                  <span className="font-heading text-3xl font-bold text-primary">Free</span>
+                  <span className="text-sm text-text-secondary">/ forever</span>
                 </div>
-                <div className="text-xs text-text-secondary font-medium mb-6">Billed annually</div>
+                <div className="text-xs text-text-secondary font-medium mb-6">No credit card required</div>
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-3 text-xs text-text-secondary">
                     <svg className="w-4 h-4 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -54,9 +55,9 @@ export default function Pricing({ onNavigate }: PricingProps) {
                   </li>
                 </ul>
               </div>
-              <button onClick={() => onNavigate("home", "#waitlist")} className="w-full rounded-xl border border-primary/20 bg-transparent py-3 text-center text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer">
-                Join Waitlist
-              </button>
+              <a href={CONFIG.signupUrl} className="w-full rounded-xl border border-primary/20 bg-transparent py-3 text-center text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer block">
+                Start Free
+              </a>
             </div>
 
             {/* Growth Plan */}
@@ -97,9 +98,9 @@ export default function Pricing({ onNavigate }: PricingProps) {
                   </li>
                 </ul>
               </div>
-              <button onClick={() => onNavigate("home", "#waitlist")} className="w-full rounded-xl bg-accent py-3 text-center text-sm font-bold text-white shadow-md hover:bg-accent/90 transition-all cursor-pointer">
+              <a href={CONFIG.signupUrl} className="w-full rounded-xl bg-accent py-3 text-center text-sm font-bold text-white shadow-md hover:bg-accent/90 transition-all cursor-pointer block">
                 Get Started
-              </button>
+              </a>
             </div>
 
             {/* Pro Plan */}
@@ -137,9 +138,9 @@ export default function Pricing({ onNavigate }: PricingProps) {
                   </li>
                 </ul>
               </div>
-              <button onClick={() => onNavigate("home", "#waitlist")} className="w-full rounded-xl border border-primary/20 bg-transparent py-3 text-center text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer">
-                Join Waitlist
-              </button>
+              <a href={CONFIG.signupUrl} className="w-full rounded-xl border border-primary/20 bg-transparent py-3 text-center text-sm font-bold text-primary hover:bg-primary/5 transition-all cursor-pointer block">
+                Get Started
+              </a>
             </div>
 
             {/* Enterprise Plan */}

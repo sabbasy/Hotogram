@@ -24,19 +24,19 @@ export default function Privacy({ onNavigate }: PrivacyProps) {
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">1. Introduction</h2>
               <p>
-                Welcome to Hotogram ("we," "our," or "us"). We operate hotogram.com and are committed to protecting the privacy of our merchants, guests, and waitlist subscribers. This Privacy Policy describes how we collect, use, and safeguard personal information captured through our landing pages, waitlist signups, and customer contact forms.
+                Welcome to Hotogram ("we," "our," or "us"). We operate hotogram.com and the Hotogram platform (app.hotogram.com), and are committed to protecting the privacy of our merchants, guests, and website visitors. This Privacy Policy describes how we collect, use, and safeguard personal information captured through our landing pages, merchant applications, and customer contact forms.
               </p>
             </section>
 
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">2. Information We Collect</h2>
               <p>
-                We collect personal information directly when you voluntarily provide it to join our waitlist, request setup guides, or submit support inquiries. This details:
+                We collect information directly when you register an account, configure a restaurant outlet, or submit support inquiries:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1.5">
                 <li>Your Name</li>
                 <li>Your Mobile Phone Number</li>
-                <li>Your Restaurant Name</li>
+                <li>Your Restaurant / Business Name</li>
                 <li>Your City / Location</li>
                 <li>Your Email Address</li>
               </ul>
@@ -48,10 +48,10 @@ export default function Privacy({ onNavigate }: PrivacyProps) {
                 We use the captured information strictly to:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1.5">
-                <li>Manage waitlist slots and send pre-launch launch updates.</li>
-                <li>Reach out to schedule free remote setup slots on launch.</li>
-                <li>Respond directly to contact messages and feedback requests.</li>
-                <li>Analyze aggregate geographical interest to schedule local support team rollouts.</li>
+                <li>Provide, operate, and maintain your restaurant's digital ordering system.</li>
+                <li>Assist you with onboarding, hardware setup, and customer support.</li>
+                <li>Respond directly to contact messages and support inquiries.</li>
+                <li>Ensure billing, account security, and service reliability.</li>
               </ul>
             </section>
 
@@ -61,22 +61,22 @@ export default function Privacy({ onNavigate }: PrivacyProps) {
                 Unlike delivery aggregator apps, Hotogram is designed on merchant data independence:
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1.5">
-                <li><strong>No selling:</strong> We never sell, lease, or rent customer database logs to third parties.</li>
-                <li><strong>Merchant data control:</strong> Diner details collected when ordering at your tables belong 100% to the merchant (the restaurant owner). Hotogram stores this secure logs strictly to execute transactions and dispatches.</li>
+                <li><strong>No selling:</strong> We never sell, lease, or rent merchant or customer databases to third parties.</li>
+                <li><strong>Merchant data control:</strong> Diner details collected when ordering at your tables belong 100% to the merchant (the restaurant owner). Hotogram stores this secure log strictly to execute transactions and dispatches.</li>
               </ul>
             </section>
 
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">5. Data Retention & Security</h2>
               <p>
-                We employ industry-standard administrative and electronic security measures to safeguard your personal details against unauthorized access. We retain waitlist details only as long as necessary to coordinate pre-launch launch phases and early-bird discount activations.
+                We employ industry-standard administrative and electronic security measures to safeguard your personal details and business records against unauthorized access.
               </p>
             </section>
 
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">6. Your Rights</h2>
               <p>
-                You have the right to request deletion of your waitlist record or contact details from our registers at any time. Simply send an email to <a href="mailto:hello@hotogram.com" className="text-primary-mid hover:underline font-medium">hello@hotogram.com</a> with the subject "Data Removal Request," and we will execute the deletion within 24 hours.
+                You have the right to request deletion of your account record or contact details from our registers at any time. Simply send an email to <a href="mailto:hello@hotogram.com" className="text-primary-mid hover:underline font-medium">hello@hotogram.com</a> with the subject "Data Removal Request," and we will execute the deletion promptly.
               </p>
             </section>
           </div>

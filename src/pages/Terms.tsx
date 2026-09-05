@@ -24,19 +24,19 @@ export default function Terms({ onNavigate }: TermsProps) {
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">1. Agreement to Terms</h2>
               <p>
-                By accessing hotogram.com and registering for our waitlist or early bird programs, you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not submit registration details.
+                By accessing hotogram.com and the Hotogram software platform (app.hotogram.com), you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not use the service.
               </p>
             </section>
 
             <section>
-              <h2 className="font-heading text-lg font-bold text-primary mb-3">2. Pre-Launch Disclosures & Booking</h2>
+              <h2 className="font-heading text-lg font-bold text-primary mb-3">2. Service Description & Subscriptions</h2>
               <p>
-                Hotogram is currently in a pre-launch phase. By signing up to the waitlist or reservation grid:
+                Hotogram is a SaaS Restaurant Operating System providing digital QR menu ordering, kitchen display systems, customer CRM, and related software tools.
               </p>
               <ul className="list-disc pl-5 mt-2 space-y-1.5">
-                <li>You acknowledge that this does not constitute a binding legal contract for services.</li>
-                <li>Waitlist reservations are complimentary and establish priority positioning for launch remote configurations.</li>
-                <li>Early-bird pricing promotions (such as ₹699/month flat pro subscription lock-ins) will be honored for registered waitlist accounts upon product launch, subject to subscription activation.</li>
+                <li>Subscription tiers are billed on a recurring monthly or annual basis as specified in your selected plan.</li>
+                <li>Hotogram charges 0% commission on table orders processed through the platform. Payment processing or gateway fees (if applicable) are governed by the merchant's respective gateway provider.</li>
+                <li>You are responsible for maintaining the confidentiality of your merchant login credentials.</li>
               </ul>
             </section>
 
@@ -50,14 +50,14 @@ export default function Terms({ onNavigate }: TermsProps) {
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">4. Limitation of Liability</h2>
               <p>
-                We provide the website and pre-launch information on an "as-is" basis. We make no representations or warranties regarding website uptime, launch delivery timelines, or exact hardware POS integrations. To the maximum extent permitted by law, Hotogram shall not be liable for any direct or indirect business disruptions arising from waitlist signups or scheduling.
+                We provide the website and software services on an "as-is" and "as-available" basis. To the maximum extent permitted by law, Hotogram shall not be liable for any indirect or consequential business disruptions.
               </p>
             </section>
 
             <section>
               <h2 className="font-heading text-lg font-bold text-primary mb-3">5. Modification of Service</h2>
               <p>
-                We reserve the right to modify launch estimates, promotional pricing values, and website contents at any time without prior notifications.
+                We reserve the right to modify features, pricing tiers, and website contents with reasonable advance notice where required.
               </p>
             </section>
 

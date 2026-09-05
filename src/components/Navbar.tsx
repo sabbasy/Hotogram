@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTheme } from "./ThemeContext";
+import { CONFIG } from "../config";
 
 interface NavbarProps {
   currentPage: string;
@@ -105,7 +106,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         </nav>
 
         {/* Desktop CTA & Theme Toggle Right */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-4">
           {/* Light/Dark Toggle Switch */}
           <button
             onClick={toggleTheme}
@@ -125,12 +126,21 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             )}
           </button>
 
-          <button 
-            onClick={() => handleLinkClick("#waitlist")}
-            className="rounded-full bg-primary-mid px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-mid/20 transition-all hover:bg-primary hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
+          {/* Sign In Link */}
+          <a
+            href={CONFIG.loginUrl}
+            className="text-sm font-semibold text-primary hover:text-accent transition-colors px-3 py-2"
           >
-            Join early access
-          </button>
+            Sign in
+          </a>
+
+          {/* Main App Sign Up Button */}
+          <a 
+            href={CONFIG.signupUrl}
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all hover:bg-accent/90 hover:shadow-lg hover:-translate-y-0.5 cursor-pointer text-center"
+          >
+            Get Started Free
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -229,15 +239,24 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             >
               Contact
             </button>
-            <button 
-              onClick={() => handleLinkClick("#waitlist")}
-              className="mt-2 w-full rounded-lg bg-accent py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent/90"
-            >
-              Join early access
-            </button>
+            <div className="pt-2 border-t border-primary/10 flex flex-col gap-3">
+              <a 
+                href={CONFIG.loginUrl}
+                className="w-full rounded-lg border border-primary/20 bg-transparent py-2.5 text-center text-base font-semibold text-primary hover:bg-primary/5 transition-colors"
+              >
+                Sign in
+              </a>
+              <a 
+                href={CONFIG.signupUrl}
+                className="w-full rounded-lg bg-accent py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent/90 block"
+              >
+                Get Started Free
+              </a>
+            </div>
           </nav>
         </div>
       )}
     </header>
   );
 }
+
